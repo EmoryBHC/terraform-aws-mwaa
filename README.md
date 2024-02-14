@@ -14,6 +14,7 @@ Terraform module for AWS MWAA
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.9.0 |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
 
@@ -28,13 +29,17 @@ Terraform module for AWS MWAA
 | [aws_iam_policy.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.wma](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.wma-additional](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_mwaa_environment.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mwaa_environment) | resource |
 | [aws_secretsmanager_secret.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret.mwaa_connections](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
 | [aws_secretsmanager_secret.mwaa_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret.mwaa_variables](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
 | [aws_secretsmanager_secret_version.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
 | [aws_secretsmanager_secret_version.mwaa_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
 | [aws_security_group.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [terraform_data.s3_objects](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [aws_iam_policy_document.allow_log_delivery](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.mwaa_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_s3_bucket.log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket) | data source |
@@ -43,9 +48,8 @@ Terraform module for AWS MWAA
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | Map of configuration options used to customize MWAA configuration. | `map` | `{}` | no |
 | <a name="input_aws_account"></a> [aws\_account](#input\_aws\_account) | Target AWS account. | `string` | n/a | yes |
-| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Tags all resources will be assigned by default. | `list` | `[]` | no |
+| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Map of default tags to assign to resources. | `map` | `{}` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Project environment. | `string` | `"dev"` | no |
 | <a name="input_environment_class"></a> [environment\_class](#input\_environment\_class) | Compute class for environment.  Options are m1.small, m1.medium, and m1.large. | `string` | `"mw1.small"` | no |
 | <a name="input_iam_policy_arn"></a> [iam\_policy\_arn](#input\_iam\_policy\_arn) | IAM Policy ARN you would like attach to the MWAA role to provide additional privileges. | `string` | n/a | yes |

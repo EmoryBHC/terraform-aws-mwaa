@@ -229,7 +229,7 @@ module "mwaa_bucket" {
   source        = "terraform-aws-modules/s3-bucket/aws"
   # version       = "3.4.0"
   bucket        = var.mwaa_bucket_name
-  force_destroy = var.s3_force_destory
+  force_destroy = var.s3_force_destroy
   tags          = merge({ Name = "${var.mwaa_bucket_name}" }, var.default_tags)
 
   # Security settings

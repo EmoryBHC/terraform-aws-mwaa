@@ -32,6 +32,12 @@ variable "default_tags" {
   default     = {}
 }
 
+variable "airflow_configuration_options" {
+  type = map
+  default = { }
+  description = "Map of configuration options used to customize MWAA configuration."
+}
+
 variable "mwaa_secrets" {
   type = map
   default = {}
@@ -42,6 +48,12 @@ variable "mwaa_secret_values" {
   type = map
   default = {}
   description = "Map of secret to value configuration.  Useful for setting global variables within Airflow.  Never use for secrets that should be kept secret.  Those should be manually set, and never stored in GIT."
+}
+
+variable "airflow_version" {
+  type = string
+  default = "2.5.1"
+  description = "Airflow version of the environment."
 }
 
 variable "environment_class" {

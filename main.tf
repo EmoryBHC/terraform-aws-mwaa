@@ -33,6 +33,7 @@ resource "terraform_data" "s3_objects" {
  */ 
 
 resource "aws_mwaa_environment" "mwaa" {
+  airflow_version       = var.airflow_version
   dag_s3_path           = "dags/"
   plugins_s3_path       = "plugins/plugins.zip"
   requirements_s3_path  = "requirements/requirements.txt"
@@ -67,10 +68,7 @@ resource "aws_mwaa_environment" "mwaa" {
 
   name = var.name
 
-  airflow_configuration_options = {
-    "secrets.backend"       = "airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend"
-    "secrets.backend_kwargs" = "{\"connections_prefix\" : \"airflow/${var.name}/connections\", \"variables_prefix\" : \"airflow/${var.name}/variables\"}"
-  }
+  airflow_configuration_options = var.airflow_configuration_options
 
   network_configuration {
     security_group_ids  = [aws_security_group.mwaa.id]
@@ -151,25 +149,33 @@ resource "aws_secretsmanager_secret_version" "mwaa" {
   ]  
 }
 
+/* WARNING!!!! We will want to move the population of the mwaa_tags to the repo `gindata-mwaa` if we ever start using this module for deployment.
 resource "aws_secretsmanager_secret" "mwaa_connections" {
-  name        = "airflow/${var.name}/connections"
+  name        = "airflow/connections"
   description = "MWAA environment and version information"
 }
 
 resource "aws_secretsmanager_secret" "mwaa_variables" {
-  name        = "airflow/${var.name}/variables"
+  name        = "airflow/variables"
   description = "MWAA environment and version information"
 }
 
+
+// This will need to be converted to a data lookup outside the module call
+
 resource "aws_secretsmanager_secret" "mwaa_tags" {
-  name        = "airflow/variables/${var.name}/mwaa_config"
+  name        = "airflow/variables/mwaa_config"
   description = "MWAA environment and version information"
 }
+
+// This will need to be move outside of the module call.
 
 resource "aws_secretsmanager_secret_version" "mwaa_tags" {
   secret_id     = aws_secretsmanager_secret.mwaa_tags.id
   secret_string = jsonencode(var.default_tags)
 }
+
+*/
 
 /*
  * S3

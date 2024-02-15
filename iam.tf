@@ -150,9 +150,10 @@ resource "aws_iam_policy" "mwaa" {
 }
 
 // Locals for slightly more complex permissions can be configured below
+
 locals {
   // Create a resource list to allow MWAA to access any custom secrets or secrets prefixed with airflow/variables or airflow/connections.
-  secret_arns = concat(values(aws_secretsmanager_secret.mwaa)[*].arn,["${aws_secretsmanager_secret.mwaa_variables.arn}/*","${aws_secretsmanager_secret.mwaa_connections.arn}/*"])
+  secret_arns = concat(values(aws_secretsmanager_secret.mwaa)[*].arn)
 }
 
 // Attach the role policy used by MWAA

@@ -115,3 +115,9 @@ variable "iam_policy_arn" {
   type = string
   description = "IAM Policy ARN you would like attach to the MWAA role to provide additional privileges."  
 }
+
+variable "s3_force_destroy" {
+  type = bool
+  default = false
+  description = "Should the dag, plugins, and requirements s3 bucket be destroyed when the environment is even if there are objects."
+}

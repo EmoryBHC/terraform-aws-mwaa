@@ -32,11 +32,7 @@ Terraform module for AWS MWAA
 | [aws_iam_role_policy_attachment.wma-additional](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_mwaa_environment.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mwaa_environment) | resource |
 | [aws_secretsmanager_secret.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret.mwaa_connections](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret.mwaa_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret.mwaa_variables](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
 | [aws_secretsmanager_secret_version.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
-| [aws_secretsmanager_secret_version.mwaa_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
 | [aws_security_group.mwaa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [terraform_data.s3_objects](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
@@ -48,6 +44,8 @@ Terraform module for AWS MWAA
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | Map of configuration options used to customize MWAA configuration. | `map` | `{}` | no |
+| <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | Airflow version of the environment. | `string` | `"2.5.1"` | no |
 | <a name="input_aws_account"></a> [aws\_account](#input\_aws\_account) | Target AWS account. | `string` | n/a | yes |
 | <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Map of default tags to assign to resources. | `map` | `{}` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Project environment. | `string` | `"dev"` | no |
@@ -62,6 +60,7 @@ Terraform module for AWS MWAA
 | <a name="input_name"></a> [name](#input\_name) | Project name. | `string` | n/a | yes |
 | <a name="input_project_description"></a> [project\_description](#input\_project\_description) | Project description. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
+| <a name="input_s3_force_destroy"></a> [s3\_force\_destroy](#input\_s3\_force\_destroy) | Should the dag, plugins, and requirements s3 bucket be destroyed when the environment is even if there are objects. | `bool` | `false` | no |
 | <a name="input_s3_log_bucket"></a> [s3\_log\_bucket](#input\_s3\_log\_bucket) | Name of the S3 log bucket you want to configure for the bucket defined in the `mwaa_bucket_name` parameter. | `string` | n/a | yes |
 | <a name="input_schedulers"></a> [schedulers](#input\_schedulers) | The number of schedulers to run in your environment. | `number` | `2` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ID's you want route your MWAA traffic over. | `list` | n/a | yes |
@@ -73,4 +72,8 @@ Terraform module for AWS MWAA
 | Name | Description |
 |------|-------------|
 | <a name="output_mwa_bucket"></a> [mwa\_bucket](#output\_mwa\_bucket) | S3 bucket used to store MWAA artifacts |
+| <a name="output_mwa_environment_arn"></a> [mwa\_environment\_arn](#output\_mwa\_environment\_arn) | MWAA environment arn |
+| <a name="output_mwa_environment_id"></a> [mwa\_environment\_id](#output\_mwa\_environment\_id) | MWAA environment id |
+| <a name="output_mwa_iam_role_name"></a> [mwa\_iam\_role\_name](#output\_mwa\_iam\_role\_name) | MWAA environment IAM role name |
+| <a name="output_mwa_security_group_id"></a> [mwa\_security\_group\_id](#output\_mwa\_security\_group\_id) | MWAA environment security group id |
 <!-- END_TF_DOCS -->

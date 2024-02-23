@@ -149,33 +149,6 @@ resource "aws_secretsmanager_secret_version" "mwaa" {
   ]  
 }
 
-/* WARNING!!!! We will want to move the population of the mwaa_tags to the repo `gindata-mwaa` if we ever start using this module for deployment.
-resource "aws_secretsmanager_secret" "mwaa_connections" {
-  name        = "airflow/connections"
-  description = "MWAA environment and version information"
-}
-
-resource "aws_secretsmanager_secret" "mwaa_variables" {
-  name        = "airflow/variables"
-  description = "MWAA environment and version information"
-}
-
-
-// This will need to be converted to a data lookup outside the module call
-
-resource "aws_secretsmanager_secret" "mwaa_tags" {
-  name        = "airflow/variables/mwaa_config"
-  description = "MWAA environment and version information"
-}
-
-// This will need to be move outside of the module call.
-
-resource "aws_secretsmanager_secret_version" "mwaa_tags" {
-  secret_id     = aws_secretsmanager_secret.mwaa_tags.id
-  secret_string = jsonencode(var.default_tags)
-}
-
-*/
 
 /*
  * S3

@@ -22,7 +22,7 @@ resource "terraform_data" "s3_objects" {
   ]
 
   provisioner "local-exec" {
-    command = "aws s3 sync s3://gindata-${var.aws_account}-mwaa-${var.region}-${var.environment} s3://${var.mwaa_bucket_name} --sse"
+    command = "aws s3 sync ${var.s3_source_bucket} s3://${var.mwaa_bucket_name} --sse"
   }
 
   depends_on = [ module.mwaa_bucket ]

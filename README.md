@@ -62,6 +62,7 @@ Terraform module for AWS MWAA
 | <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
 | <a name="input_s3_force_destroy"></a> [s3\_force\_destroy](#input\_s3\_force\_destroy) | Should the dag, plugins, and requirements s3 bucket be destroyed when the environment is even if there are objects. | `bool` | `false` | no |
 | <a name="input_s3_log_bucket"></a> [s3\_log\_bucket](#input\_s3\_log\_bucket) | Name of the S3 log bucket you want to configure for the bucket defined in the `mwaa_bucket_name` parameter. | `string` | n/a | yes |
+| <a name="input_s3_source_bucket"></a> [s3\_source\_bucket](#input\_s3\_source\_bucket) | S3 source bucket where store initial plugins.zip, requirements, and dags.  This will be copied to the mwaa\_bucket\_name as these files are required at environment setup. | `string` | n/a | yes |
 | <a name="input_schedulers"></a> [schedulers](#input\_schedulers) | The number of schedulers to run in your environment. | `number` | `2` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ID's you want route your MWAA traffic over. | `list` | n/a | yes |
 | <a name="input_vpc_cidr_blocks"></a> [vpc\_cidr\_blocks](#input\_vpc\_cidr\_blocks) | VPC CIDR block used to allow traffic from the scheduler and Aurora DB. | `list` | n/a | yes |

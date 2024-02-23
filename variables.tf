@@ -121,3 +121,8 @@ variable "s3_force_destroy" {
   default = false
   description = "Should the dag, plugins, and requirements s3 bucket be destroyed when the environment is even if there are objects."
 }
+
+variable "s3_source_bucket" {
+  type = string
+  description = "S3 source bucket where store initial plugins.zip, requirements, and dags.  This will be copied to the mwaa_bucket_name as these files are required at environment setup."
+}

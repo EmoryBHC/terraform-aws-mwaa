@@ -37,6 +37,7 @@ resource "aws_mwaa_environment" "mwaa" {
   dag_s3_path           = "dags/"
   plugins_s3_path       = "plugins/plugins.zip"
   requirements_s3_path  = "requirements/requirements.txt"
+  startup_script_s3_path  = "startup_scripts/startup.sh"
   execution_role_arn    = aws_iam_role.mwaa.arn
   environment_class     = var.environment_class
   max_workers           = var.max_workers 

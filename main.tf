@@ -33,16 +33,16 @@ resource "terraform_data" "s3_objects" {
  */ 
 
 resource "aws_mwaa_environment" "mwaa" {
-  airflow_version       = var.airflow_version
-  dag_s3_path           = "dags/"
-  plugins_s3_path       = "plugins/plugins.zip"
-  requirements_s3_path  = "requirements/requirements.txt"
+  airflow_version         = var.airflow_version
+  dag_s3_path             = "dags/"
+  plugins_s3_path         = "plugins/plugins.zip"
+  requirements_s3_path    = "requirements/requirements.txt"
   startup_script_s3_path  = "startup_scripts/startup.sh"
-  execution_role_arn    = aws_iam_role.mwaa.arn
-  environment_class     = var.environment_class
-  max_workers           = var.max_workers 
-  min_workers           = var.min_workers
-  schedulers            = var.schedulers 
+  execution_role_arn      = aws_iam_role.mwaa.arn
+  environment_class       = var.environment_class
+  max_workers             = var.max_workers 
+  min_workers             = var.min_workers
+  schedulers              = var.schedulers 
 
   logging_configuration {
     dag_processing_logs {
